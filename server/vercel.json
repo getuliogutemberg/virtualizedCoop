@@ -4,13 +4,15 @@
     {
       "src": "dist/server.js",  
       "use": "@now/node-server",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+      
 
     }
-  ]
+    
+  ],
+  "headers": 
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    }
+  
 }
