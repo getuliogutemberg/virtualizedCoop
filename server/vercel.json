@@ -1,9 +1,18 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/**/*.ts", "use": "@now/node", "Access-Control-Allow-Origin": "*"  }
-  
+    {
+      "src": "dist/server.js",  
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/server.js" 
+    }
+  ],
+  "headers": [
+    { "source": "/api/socket", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] }
   ]
 }
-
-  
