@@ -1,5 +1,6 @@
 import { Server, Socket } from 'socket.io';
 
+
 interface Character {
     id: string;
     name: string;
@@ -12,13 +13,16 @@ interface Character {
 
 const io = new Server({
     cors: {
-        origin: 'http://localhost:5173',
+        origin: '*',
+        methods: ['GET', 'POST'],
     },
 });
-
 io.listen(3001);
 
+
 const characters: Character[] = [];
+
+
 
 const generateRandomPosition = (): number[] => {
     return [
