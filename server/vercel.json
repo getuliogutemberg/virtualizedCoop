@@ -6,12 +6,6 @@
       "use": "@now/node-server"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/server.js" 
-    }
-  ],
   "headers": [
     { "source": "/api/socket", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] }
   ]
