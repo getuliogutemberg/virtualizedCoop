@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon --experimental-specifier-resolution=node dist/index.ts",
     "start": "node dist/index.js",
     "build": "tsc"
   },
