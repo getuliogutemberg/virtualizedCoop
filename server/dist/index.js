@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const socket_io_1 = require("socket.io");
 const io = new socket_io_1.Server({
     cors: {
-        origin: 'http://localhost:5173',
+        origin: '*',
+        methods: ['GET', 'POST'],
     },
 });
 io.listen(3001);
@@ -52,4 +53,4 @@ io.on('connection', (socket) => {
         }
     });
 });
-//# sourceMappingURL=index.js.map
+exports.default = io;

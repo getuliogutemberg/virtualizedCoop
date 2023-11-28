@@ -1,6 +1,5 @@
 import { Server, Socket } from 'socket.io';
 
-
 interface Character {
     id: string;
     name: string;
@@ -17,12 +16,10 @@ const io = new Server({
         methods: ['GET', 'POST'],
     },
 });
+
 io.listen(3001);
 
-
 const characters: Character[] = [];
-
-
 
 const generateRandomPosition = (): number[] => {
     return [
@@ -76,3 +73,4 @@ io.on('connection', (socket: Socket) => {
     });
 });
 
+export default io;
