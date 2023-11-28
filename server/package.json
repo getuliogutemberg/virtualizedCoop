@@ -1,15 +1,37 @@
 {
   
   "scripts": {
-    "dev": "nodemon --experimental-specifier-resolution=node index.ts",
-    "start": "node dist/index.js",
-    "build": "tsc"
+  
+    
+  "dev": "nodemon --experimental-specifier-resolution=node index.ts",
+  
+    
+  "start": "node dist/index.js",
+  
+    
+  "build": "tsc"
+  
   },
+  
   "dependencies": {
-    "@types/socket.io": "^3.0.2",
-    "jotai": "^2.6.0",
-    "nodemon": "^3.0.1",
-    "socket.io": "^4.7.2",
-    "typescript": "^5.3.2"
+  
+    
+  "@types/socket.io": "^3.0.2",
+  
+    
+  "cors": "^2.8.5",
+  
+    
+  "jotai": "^2.6.0",
+  
+    
+  "nodemon": "^3.0.1",
+  
+    
+  "socket.io": "^4.7.2",
+  
+    
+  "typescript": "^5.3.2"
+  
   }
 }

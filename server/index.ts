@@ -1,4 +1,7 @@
 import { Server, Socket } from 'socket.io';
+// import cors from 'cors';
+// import { createServer } from 'http';
+// const httpServer = createServer();
 
 interface Character {
     id: string;
@@ -16,6 +19,12 @@ const io = new Server({
         methods: ['GET', 'POST'],
     },
 });
+
+
+
+// httpServer.listen(3002, () => {
+//     console.log('listening on *:3002');
+// });
 
 io.listen(3001);
 

@@ -7,6 +7,9 @@ const io = new socket_io_1.Server({
         methods: ['GET', 'POST'],
     },
 });
+// httpServer.listen(3002, () => {
+//     console.log('listening on *:3002');
+// });
 io.listen(3001);
 const characters = [];
 const generateRandomPosition = () => {
