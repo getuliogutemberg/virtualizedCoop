@@ -33,6 +33,10 @@ export function Astronaut({topColor = 'gray',bodyColor = 'gray', bottomColor = '
     if (group.current.position.distanceTo(props.position) > 0.1) {
       const direction = group.current.position.clone().sub(props.position).normalize().multiplyScalar(MOVIMENT_SPEED)
       group.current.position.sub(direction)
+      group.current.lookAt(props.position)
+      setAnimation('CharacterArmature|Run')
+    } else {
+      setAnimation('CharacterArmature|Idle_Neutral')
     }
   })
   return (
