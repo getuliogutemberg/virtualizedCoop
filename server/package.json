@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node dist/index.js",
+    "build": "tsc"
   },
   "dependencies": {
     "jotai": "^2.6.0",
