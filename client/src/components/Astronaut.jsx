@@ -8,7 +8,7 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { useFrame, useGraph } from '@react-three/fiber'
 
-const MOVIMENT_SPEED = 0.032
+const MOVIMENT_SPEED = 0.05
 export function Astronaut({topColor = 'gray',bodyColor = 'gray', bottomColor = 'gray',baseColor = 'gray',...props}) {
 
   const position = useMemo(() =>props.position, [])
@@ -19,7 +19,7 @@ export function Astronaut({topColor = 'gray',bodyColor = 'gray', bottomColor = '
   const clone = useMemo(() => SkeletonUtils.clone(scene),[scene])
   const { nodes } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
-  // console.log(actions)
+  console.log(actions)
   const [ animation,setAnimation ] = useState('CharacterArmature|Idle_Neutral')
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export function Astronaut({topColor = 'gray',bodyColor = 'gray', bottomColor = '
       const direction = group.current.position.clone().sub(props.position).normalize().multiplyScalar(MOVIMENT_SPEED)
       group.current.position.sub(direction)
       group.current.lookAt(props.position)
-      setAnimation('CharacterArmature|Run')
+      setAnimation('CharacterArmature|Walk')
     } else {
       setAnimation('CharacterArmature|Idle_Neutral')
     }
