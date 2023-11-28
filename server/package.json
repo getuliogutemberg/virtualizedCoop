@@ -3,10 +3,10 @@
   "scripts": {
   
     
-  "dev": "nodemon --experimental-specifier-resolution=node index.ts",
+  "dev": "nodemon --experimental-specifier-resolution=node socket.ts",
   
     
-  "start": "node dist/index.js",
+  "start": "node dist/socket.js",
   
     
   "build": "tsc"

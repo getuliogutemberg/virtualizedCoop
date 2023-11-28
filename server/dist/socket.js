@@ -1,46 +1,25 @@
-import { Server, Socket } from 'socket.io';
-// import cors from 'cors';
-// import { createServer } from 'http';
-// const httpServer = createServer();
-
-interface Character {
-    id: string;
-    name: string;
-    position: number[];
-    topColor: string;
-    bottomColor: string;
-    bodyColor: string;
-    baseColor: string;
-}
-
-const io = new Server({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const socket_io_1 = require("socket.io");
+const io = new socket_io_1.Server({
     cors: {
         origin: '*',
         methods: ['GET', 'POST'],
-        
     },
-    
 });
-
-
-
 // httpServer.listen(3002, () => {
 //     console.log('listening on *:3002');
 // });
-
 io.listen(3001);
-
-const characters: Character[] = [];
-
-const generateRandomPosition = (): number[] => {
+const characters = [];
+const generateRandomPosition = () => {
     return [
         Math.random() * 3,
         Math.random() * 0,
         Math.random() * 3,
     ];
 };
-
-const generateRandomHexColor = (): string => {
+const generateRandomHexColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
@@ -48,12 +27,9 @@ const generateRandomHexColor = (): string => {
     }
     return color;
 };
-
-io.on('connection', (socket: Socket) => {
+io.on('connection', (socket) => {
     console.log('a user connected');
-
     socket.emit('hello');
-
     characters.push({
         id: socket.id,
         name: `Player(id:${socket.id})`,
@@ -63,17 +39,14 @@ io.on('connection', (socket: Socket) => {
         bodyColor: generateRandomHexColor(),
         baseColor: generateRandomHexColor(),
     });
-
     io.emit('characters', characters);
-
-    socket.on('move', (position: number[]) => {
+    socket.on('move', (position) => {
         const characterIndex = characters.findIndex((character) => character.id === socket.id);
         if (characterIndex !== -1) {
             characters[characterIndex].position = position;
             io.emit('characters', characters);
         }
     });
-
     socket.on('disconnect', () => {
         console.log('user disconnected');
         const characterIndex = characters.findIndex((character) => character.id === socket.id);
@@ -83,5 +56,4 @@ io.on('connection', (socket: Socket) => {
         }
     });
 });
-
-export default io;
+exports.default = io;
