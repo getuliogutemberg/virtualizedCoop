@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --experimental-specifier-resolution=node index.ts",
-    "start": "node dist/index.js",
+    "start": "node dist/index.cjs",
     "build": "tsc"
   },
   "dependencies": {
