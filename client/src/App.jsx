@@ -6,7 +6,7 @@ function App() {
   return (
     <>
      <SocketManager />
-    <Canvas shadows camera={{ position: [0, 5, 5], fov: 30}}>
+    <Canvas shadows camera={{ position: [8, 8, 8], fov: 30}}>
       <color attach="background" args={["#000"]} />
       <Experience />
     </Canvas>

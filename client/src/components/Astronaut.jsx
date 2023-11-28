@@ -6,11 +6,12 @@ Command: npx gltfjsx@6.2.15 public/models/Astronaut.glb -o src/components/Astron
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
-import { useGraph } from '@react-three/fiber'
+import { useFrame, useGraph } from '@react-three/fiber'
 
-
+const MOVIMENT_SPEED = 0.032
 export function Astronaut({topColor = 'gray',bodyColor = 'gray', bottomColor = 'gray',baseColor = 'gray',...props}) {
 
+  const position = useMemo(() =>props.position, [])
 
   const group = useRef()
   const { scene, materials, animations } = useGLTF('/models/Astronaut.glb')
@@ -18,17 +19,24 @@ export function Astronaut({topColor = 'gray',bodyColor = 'gray', bottomColor = '
   const clone = useMemo(() => SkeletonUtils.clone(scene),[scene])
   const { nodes } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
-  console.log(actions)
+  // console.log(actions)
   const [ animation,setAnimation ] = useState('CharacterArmature|Idle_Neutral')
 
   useEffect(() => {
     actions[animation].reset().fadeIn(0.5).play()
     return () => {
-      actions[animation].stop().fadeOut(0.5)
+      actions[animation]?.stop().fadeOut(0.5)
     }
   }, [animation])
+
+  useFrame(() => {
+    if (group.current.position.distanceTo(props.position) > 0.1) {
+      const direction = group.current.position.clone().sub(props.position).normalize().multiplyScalar(MOVIMENT_SPEED)
+      group.current.position.sub(direction)
+    }
+  })
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} {...props} position={position} dispose={null}>
       <group name="Root_Scene">
         <group name="RootNode">
           <group name="CharacterArmature" rotation={[-Math.PI / 2, 0, 0]} scale={100}>
