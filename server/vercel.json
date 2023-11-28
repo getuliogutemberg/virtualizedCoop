@@ -1,7 +1,7 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/**/*.ts", "use": "@now/node", "config": { "Access-Control-Allow-Origin": "*" } }
+    { "src": "api/**/*.ts", "use": "@now/node", "headers": { "Access-Control-Allow-Origin": "*" } }
   
   ]
 }
