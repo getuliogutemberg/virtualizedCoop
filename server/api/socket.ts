@@ -13,9 +13,14 @@ interface Character {
     baseColor: string;
 }
 
-const io = new Server();
+const io = new Server({
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    },
+});
 
-io.use(cors());
+
 
 
 // httpServer.listen(3002, () => {
