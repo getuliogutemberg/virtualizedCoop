@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { atom, useAtom } from 'jotai'
 
-export const socket = io('https://virtualized-server.vercel.app/')
+export const socket = io('https://35.238.73.66/')
 export const charactersAtom = atom([])
 export const SocketManager = () => {
     const [_characters, setCharacters] = useAtom(charactersAtom)

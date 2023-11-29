@@ -1,5 +1,5 @@
 import { Server, Socket } from 'socket.io';
-// import cors from 'cors';
+import cors from 'cors';
 // import { createServer } from 'http';
 // const httpServer = createServer();
 
@@ -13,15 +13,9 @@ interface Character {
     baseColor: string;
 }
 
-const io = new Server({
-    cors: {
-        origin: '*',
-        methods: ['GET', 'POST'],
-        
-    },
-    
-});
+const io = new Server();
 
+io.use(cors());
 
 
 // httpServer.listen(3002, () => {
