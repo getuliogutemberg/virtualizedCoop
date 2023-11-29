@@ -27,6 +27,8 @@ const generateRandomHexColor = () => {
     }
     return color;
 };
+
+console.log('listening on *:3001');
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.emit('hello');
